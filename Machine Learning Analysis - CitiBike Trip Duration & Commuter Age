@@ -14,72 +14,10 @@
     {
       "cell_type": "markdown",
       "metadata": {
-        "id": "ugGDuuAUpZEQ"
-      },
-      "source": [
-        "## Ridership of Urban Bike Shares: the case of Citi Bike in NYC\n",
-        "\n",
-        "![alt text](https://d21xlh2maitm24.cloudfront.net/nyc/01unlock2.JPG?mtime=20160428123800)\n",
-        "\n",
-        "---"
-      ]
-    },
-    {
-      "cell_type": "markdown",
-      "metadata": {
-        "id": "rQgC1Td2qSkW"
-      },
-      "source": [
-        "### OVERVIEW\n",
-        "\n",
-        "Bike share programs have been implemented in cities around the world in an effort to address multiple aspects of both city functioning and quality of life for urban populations.  Traffic congestion, public health, community engagement, and air quality have all aspects of city life that could *potentially* be impacted by the introduction of a bike share program into a community.\n",
-        "\n",
-        "One particularly massive bike share is New York City's [Citi Bike](https://www.citibikenyc.com/) program.  The area coverage of this program is large (extending into New Jersey across the Hudson River) and ridership initial adoption rates – as measured by the number of rides taken – were promising.  However this program has not been without controversy and there has been active discussion regarding which communities ara actually being served and which are not, who is benefitting from the availability of bikes, how they are being used for recreational vs commuter purposes, etc.\n",
-        "\n",
-        "The goal of this assignment is two-fold: first, you will learn to work with basic tabular data from the Citi Bike program and second, you will generate a simple estimate for the <u>which age group is predominantly using citi bikes for commuter travel</u>."
-      ]
-    },
-    {
-      "cell_type": "markdown",
-      "source": [
-        "---"
-      ],
-      "metadata": {
-        "id": "6wUfgPe4VtsW"
-      }
-    },
-    {
-      "cell_type": "markdown",
-      "metadata": {
-        "id": "UBL4OBtWzv7O"
-      },
-      "source": [
-        "### **PART 1 - Background**\n",
-        "\n",
-        "Good data science (and data analysis more generally) as well as the appropriate application of machine learning algorithms depends on a clear understanding of the underlying problem/situation, the methods by which the data you are about to analyze are collected, and the situational context in which that data sits.  To that end:\n",
-        "\n",
-        "<b>\n",
-        "\n",
-        "Read through the following resources (including links within) regarding the Citi Bike program and its impacts in NYC,\n",
-        "\n",
-        "1. [official Citi Bike site](https://citibikenyc.com/)\n",
-        "\n",
-        "2. [DOT Facts on Citi Bike](https://www.nyc.gov/html/dot/html/pr2013/facts-on-citi-bike.shtml)\n",
-        "\n",
-        "3. [Cycling in the City](https://www.nyc.gov/html/dot/downloads/pdf/cycling-in-the-city-2020.pdf)\n",
-        "\n",
-        "4. [The Rise of Citi Bikes in New York City](https://thesciencesurvey.com/news/2021/03/21/the-rise-of-citi-bikes-in-new-york-city/)\n",
-        "\n",
-        "</b>"
-      ]
-    },
-    {
-      "cell_type": "markdown",
-      "metadata": {
         "id": "3KwDRW3R2qEU"
       },
       "source": [
-        "### **PART 2 - Loading the data**"
+        "### **Loading the data**"
       ]
     },
     {
@@ -90,7 +28,7 @@
       "source": [
         "First, we need to get access to the data.  To do that, we need to link this notebook with out Google Drive.  \n",
         "\n",
-        "***Why are we doing this?:***\n",
+        "**Why are we doing this?:**\n",
         "\n",
         "Mounting Google Drive in Colab is a good practise, especially when using datasets stored in Drive. Because:\n",
         "\n",
@@ -98,7 +36,7 @@
         "*   This ensures **persistent storage**, prevents data loss when the session resets, and makes it easier to handle large files that may exceed Colab’s temporary storage limits.\n",
         "*   Additionally, it enables seamless collaboration, as shared datasets in Drive can be accessed by multiple users.\n",
         "\n",
-        "***To do this:***\n",
+        "**To do this:**\n",
         "\n",
         "On the left there is a folder icon which has Google Drive icon on it.  Click that and in the popout menu click \"Mount Drive\".\n",
         "\n",
@@ -118,7 +56,7 @@
         "id": "4ek-WxkqU6bN",
         "outputId": "c2d87d05-0bd6-4226-f999-94d2a243d29d"
       },
-      "execution_count": 2,
+      "execution_count": null,
       "outputs": [
         {
           "output_type": "stream",
@@ -155,12 +93,12 @@
         "outputId": "e0544255-90a4-42b9-e980-0bd1fc05a508"
       },
       "source": [
-        "fname = \"/content/drive/Shareddrives/mlpp25/data/citibike/JC-201604-citibike-tripdata.csv\"\n",
+        "fname = \"include-file-path\" #include the link of the copied file path (either from your google drive [option1] or directly uploaded from the computer[option2])\n",
         "import pandas as pd\n",
         "citi = pd.read_csv(fname)\n",
         "citi.head() #shows the first 5 rows of the dataset"
       ],
-      "execution_count": 3,
+      "execution_count": null,
       "outputs": [
         {
           "output_type": "execute_result",
@@ -553,7 +491,7 @@
         "id": "g_c54zBK47Gm"
       },
       "source": [
-        "### **PART 3 - Calculate useful metrics**"
+        "### **Calculate useful metrics**"
       ]
     },
     {
@@ -585,7 +523,7 @@
       "source": [
         "citi[\"age\"] = 2016 - citi[\"Birth Year\"] #Note that the year given in the dataset is 2016."
       ],
-      "execution_count": 4,
+      "execution_count": null,
       "outputs": []
     },
     {
@@ -614,7 +552,7 @@
         "citi[\"logdur\"] = np.log10(citi[\"Trip Duration\"])\n",
         "citi.head() #verifying"
       ],
-      "execution_count": 5,
+      "execution_count": null,
       "outputs": [
         {
           "output_type": "execute_result",
@@ -1026,7 +964,7 @@
         "id": "84bGnQmV5GCy"
       },
       "source": [
-        "### **PART 4 - Visualize the data and update metrics**"
+        "### **Visualize the data and update metrics**"
       ]
     },
     {
@@ -1051,7 +989,7 @@
       "source": [
         "citi[\"Trip Duration\"].hist(bins=100, range=(0, 10000))"
       ],
-      "execution_count": 6,
+      "execution_count": null,
       "outputs": [
         {
           "output_type": "execute_result",
@@ -1087,7 +1025,21 @@
     {
       "cell_type": "markdown",
       "source": [
-        "Gaussian distribution is nothing but the normal distribution. It is usually symmetric and bell shaped. Here, it can be observed that it is not gaussian, as the graph has positive skewness, i.e., there is long tail towards right. This implies that there are fewer long trips and more shorter trips."
+        "<b>What is gaussian distribution?</b>\n",
+        "\n",
+        "The Gaussian distribution, also known as the normal distribution, is a continuous probability distribution that is symmetric about its mean. It has the characteristic bell-shaped curve, where most of the data points are concentrated around the mean, with fewer points in the tails. The distribution is fully described by two parameters: mean (μ), which determines the center, and standard deviation (σ), which controls the spread of the data. In a standard normal distribution, the mean is 0, and the standard deviation is 1.\n",
+        "\n",
+        "To determine whether a histogram follows a Gaussian distribution, look for the following features:\n",
+        "\n",
+        "\n",
+        "\n",
+        "*   A unimodal (single peak) and symmetric shape centered around the mean.\n",
+        "*   The tails should gradually decrease on both sides, approaching but never touching the x-axis.\n",
+        "\n",
+        "\n",
+        "<b>Observation:</b>\n",
+        "\n",
+        "Here, in the above graph, it can be clearly observed that it is not gaussian, as the graph has positive skewness, i.e., there is long tail towards right. This implies that there are fewer long trips and more shorter trips."
       ],
       "metadata": {
         "id": "wmnDR1voZy57"
@@ -1121,7 +1073,7 @@
         "plt.title(\"Histogram of Logarithm of Trip Durations\")\n",
         "plt.show()"
       ],
-      "execution_count": 7,
+      "execution_count": null,
       "outputs": [
         {
           "output_type": "display_data",
@@ -1175,7 +1127,7 @@
         "logdur_median = citi[\"logdur\"].median()\n",
         "logdur_median"
       ],
-      "execution_count": 8,
+      "execution_count": null,
       "outputs": [
         {
           "output_type": "execute_result",
@@ -1220,7 +1172,7 @@
         "timeDur_min = 10**logdur_median/60\n",
         "timeDur_min"
       ],
-      "execution_count": 9,
+      "execution_count": null,
       "outputs": [
         {
           "output_type": "execute_result",
@@ -1259,7 +1211,7 @@
         "id": "iWxrja6Jeqoh",
         "outputId": "d3738974-5619-42e0-de71-74b335f27f30"
       },
-      "execution_count": 10,
+      "execution_count": null,
       "outputs": [
         {
           "output_type": "execute_result",
@@ -1306,7 +1258,7 @@
         "citi[\"long_trip\"] = citi[\"logdur\"] >= logdur_median\n",
         "citi.head( ) #verifying"
       ],
-      "execution_count": 11,
+      "execution_count": null,
       "outputs": [
         {
           "output_type": "execute_result",
@@ -1748,7 +1700,7 @@
         "#we are creating a new datafram citig to not disturb the main dataframe.\n",
         "citig.head() #verifying"
       ],
-      "execution_count": 23,
+      "execution_count": null,
       "outputs": [
         {
           "output_type": "execute_result",
@@ -2226,7 +2178,7 @@
           "height": 237
         }
       },
-      "execution_count": 24,
+      "execution_count": null,
       "outputs": [
         {
           "output_type": "execute_result",
@@ -2571,7 +2523,7 @@
         "citig[\"total_trips\"] = citig[\"short_trip\"] + citig[\"long_trip\"]\n",
         "citig.head() #verifying"
       ],
-      "execution_count": 25,
+      "execution_count": null,
       "outputs": [
         {
           "output_type": "execute_result",
@@ -2947,7 +2899,7 @@
         "#this allows the ticks on the x axis to appear with a difference of 5.\n",
         "plt.show() #to display the plot"
       ],
-      "execution_count": 26,
+      "execution_count": null,
       "outputs": [
         {
           "output_type": "display_data",
@@ -2982,7 +2934,7 @@
     {
       "cell_type": "markdown",
       "source": [
-        "**What are the assumptions that went into finding this model?  And how do your findings relate to the information in the resources in Part 1?**"
+        "**What are the assumptions that went into finding this model?  And how do your findings relate to the information in the resources?**"
       ],
       "metadata": {
         "id": "gCLUL0lZqKgV"
